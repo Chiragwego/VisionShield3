@@ -1,4 +1,8 @@
-import type { BoundingBox, PerceptionSource } from "../perception/types";
+import type {
+  BoundingBox,
+  PerceptionSnapshot,
+  PerceptionSource,
+} from "../perception/types";
 
 export type SensitiveDataType =
   | "email"
@@ -23,6 +27,12 @@ export type RedactionStrategy =
   | "replace"
   | "semantic";
 
+export type PrivacySeverity =
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+
 export interface PrivacyFinding {
   readonly id: string;
   readonly type: SensitiveDataType;
@@ -30,7 +40,7 @@ export interface PrivacyFinding {
   readonly confidence: number;
   readonly bounds?: BoundingBox;
   readonly text?: string;
-  readonly severity: "low" | "medium" | "high" | "critical";
+  readonly severity: PrivacySeverity;
   readonly recommendedStrategy: RedactionStrategy;
 }
 
@@ -44,12 +54,12 @@ export interface PrivacyDetector {
   readonly id: string;
 
   detect(
-    snapshot: import("../perception/types").PerceptionSnapshot,
+    snapshot: PerceptionSnapshot,
   ): Promise<readonly PrivacyFinding[]>;
 }
 
 export interface PrivacyFusionEngine {
   analyze(
-    snapshot: import("../perception/types").PerceptionSnapshot,
+    snapshot: PerceptionSnapshot,
   ): Promise<PrivacyAnalysis>;
 }
