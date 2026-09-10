@@ -1,8 +1,3 @@
----
-
-# 5. `src/core/perception/types.ts`
-
-```typescript
 export type PerceptionSource = "dom" | "ocr" | "vision";
 
 export interface BoundingBox {
