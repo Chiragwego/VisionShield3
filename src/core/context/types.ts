@@ -1,4 +1,8 @@
-import type { BoundingBox, PerceptionElement } from "../perception/types";
+import type {
+  BoundingBox,
+  PerceptionElement,
+  PerceptionSnapshot,
+} from "../perception/types";
 import type { PrivacyFinding } from "../privacy/types";
 
 export interface SanitizedText {
@@ -41,7 +45,7 @@ export interface SanitizedContext {
 
 export interface ContextSanitizer {
   sanitize(
-    snapshot: import("../perception/types").PerceptionSnapshot,
+    snapshot: PerceptionSnapshot,
     findings: readonly PrivacyFinding[],
   ): Promise<SanitizedContext>;
 }
