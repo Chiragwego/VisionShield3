@@ -1,1 +1,2 @@
-export * from "./context-sanitizer";
+export * from "./types";
+export * from "./sanitizer";
